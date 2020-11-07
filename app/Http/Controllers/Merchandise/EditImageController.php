@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\MyMerchandise;
+namespace App\Http\Controllers\Merchandise;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Models\MerchandiseImage;
 use App\Http\Requests\OnlyIdRequest;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 

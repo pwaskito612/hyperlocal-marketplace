@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\MyMerchandise;
+namespace App\Http\Controllers\Merchandise;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Models\Merchandise;
 use App\Http\Requests\Merchandise\EditDataMerchandiseRequest;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 class UpdateDataController extends Controller
@@ -16,15 +16,15 @@ class UpdateDataController extends Controller
     public function index(EditDataMerchandiseRequest $request)
     {
         $data = $request->all();
-
-        $this->storeMerchandise($data);
+       
+        $this->updateMerchandise($data);
 
 
         return redirect('/mymerchandise');
 
     }
 
-    public function storeMerchandise($data) {
+    public function updateMerchandise($data) {
         Merchandise::where('id', $data['id'])
         ->where('seller_id', Auth::user()->id)
         ->update([

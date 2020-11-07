@@ -1,25 +1,25 @@
 <?php
 
-namespace App\Http\Controllers\MyMerchandise;
+namespace App\Http\Controllers\Merchandise;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Models\Merchandise;
 use App\Http\Requests\OnlyIdRequest;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class DeleteController extends Controller
 {
-    
    
 
     public function index(OnlyIdRequest $request)
     {
-        $data = $request->all();
+       $data = $request->all();
 
        $delete = Merchandise::where('id', $data['id'])
-       ->update(['deleted' => 1]);
+       ->where('seller_id', Auth::user()->id)
+       ->update(['deleted' => false]);
 
        
         return redirect('/mymerchandise');

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\MyMerchandise;
+namespace App\Http\Controllers\Merchandise;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Http\Traits\PaginationTrait;
 
-class MerchandiseController extends Controller
+class ShowMerchandiseController extends Controller
 {
     use PaginationTrait;
 

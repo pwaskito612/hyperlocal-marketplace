@@ -1,29 +1,28 @@
 <?php
 
-namespace App\Http\Controllers\MyMerchandise;
+namespace App\Http\Controllers\Merchandise;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Models\Merchandise;
 use App\Models\MerchandiseImage;
 use App\Http\Requests\OnlyIdRequest;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class DeleteImageController extends Controller
 {
-    private $data;
 
     public function index(OnlyIdRequest $request)
     {
-        $this->data = $request->all();
+        $data = $request->all();
 
-        $image = $this->getDataFromDB($this->data['id']);
+        $image = $this->getDataFromDB($data['id']);
       
         $this->deleteImage($image->image_url);
         $this->deleteDB($image->id);
         
-        return redirect('/mymerchandise');
+        return redirect('/edit-merchandise-image?id='. $image->merchandise_id);
     }
 
     public function getDataFromDB($id) {
@@ -31,8 +30,10 @@ class DeleteImageController extends Controller
         'merchandises.id', '=', 'merchandise_images.merchandise_id')
         ->where('merchandise_images.id', $id)
         ->where('seller_id', Auth::user()->id)
+        ->select('merchandise_images.id', 'image_url', 'merchandise_images.merchandise_id')
         ->first();
 
+        var_dump($image->merchandise_id);
         return $image;
     }
 

@@ -36,15 +36,15 @@ Route::middleware('logged')
         Route::put('/account/change-password', [App\Http\Controllers\Account\ChangePasswordController::class, 'index']);
     
         //merchandise
-        Route::get('/mymerchandise', [App\Http\Controllers\MyMerchandise\MerchandiseController::class, 'index']);
-        Route::get('/create-merchandise', [App\Http\Controllers\MyMerchandise\CreateMerchandiseController::class, 'index']);
-        Route::get('/edit-merchandise', [App\Http\Controllers\MyMerchandise\EditDataController::class, 'index']);
-        Route::post('/store-merchandise', [App\Http\Controllers\MyMerchandise\StoreController::class, 'index']);
-        Route::delete('/delete-merchandise', [App\Http\Controllers\MyMerchandise\DeleteController::class, 'index']);
-        Route::put('/update-merchandise', [App\Http\Controllers\MyMerchandise\UpdateDataController::class, 'index']);
-        Route::get('/edit-merchandise-image', [App\Http\Controllers\MyMerchandise\EditImageController::class, 'index']);
-        Route::post('/insert-new-image', [App\Http\Controllers\MyMerchandise\InsertNewImageController::class, 'index']);
-        Route::delete('/delete-image-merchandise', [App\Http\Controllers\MyMerchandise\DeleteImageController::class, 'index']);
+        Route::get('/mymerchandise', [App\Http\Controllers\Merchandise\ShowMerchandiseController::class, 'index']);
+        Route::get('/create-merchandise', [App\Http\Controllers\Merchandise\CreateMerchandiseController::class, 'index']);
+        Route::get('/edit-merchandise', [App\Http\Controllers\Merchandise\EditDataController::class, 'index']);
+        Route::post('/store-merchandise', [App\Http\Controllers\Merchandise\StoreController::class, 'index']);
+        Route::delete('/delete-merchandise', [App\Http\Controllers\Merchandise\DeleteController::class, 'index']);
+        Route::put('/update-merchandise', [App\Http\Controllers\Merchandise\UpdateDataController::class, 'index']);
+        Route::get('/edit-merchandise-image', [App\Http\Controllers\Merchandise\EditImageController::class, 'index']);
+        Route::post('/insert-new-image', [App\Http\Controllers\Merchandise\InsertNewImageController::class, 'index']);
+        Route::delete('/delete-image-merchandise', [App\Http\Controllers\Merchandise\DeleteImageController::class, 'index']);
        
         //order
         Route::get('/myorder', [App\Http\Controllers\Order\MyOrderController::class, 'index']);

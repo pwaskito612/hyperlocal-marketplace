@@ -1,28 +1,39 @@
 <?php
 
-namespace App\Http\Controllers\MyMerchandise;
+namespace App\Http\Controllers\Merchandise;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Models\Merchandise;
 use App\Models\MerchandiseImage;
 use App\Http\Requests\Merchandise\InsertNewImageRequest;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class InsertNewImageController extends Controller
 {
     
-    
-
     public function index(InsertNewImageRequest $request)
     {
-        $data = $request->all();
+       $data = $request->all();
 
+       $merchandiseId = $this->checkSellerId($data['id'], Auth::user()->id);
+
+       if($merchandiseId != null) {
         $path = $this->storeToStorage($request->file('image'));
-        $this->insertDB($data['id'], $path);
+        $this->insertDB($merchandiseId->id, $path);
+       }
 
         return redirect('/edit-merchandise-image?id=' . $data['id']);
+    }
+
+    public function checkSellerId($merchandiseId,$sellerId) {
+        $result = Merchandise::where('id', $merchandiseId)
+        ->where('seller_id', $sellerId)
+        ->select('id')
+        ->first();
+
+        return $result;
     }
 
     public function insertDB($id, $path) {

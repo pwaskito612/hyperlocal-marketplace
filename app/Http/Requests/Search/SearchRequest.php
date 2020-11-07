@@ -26,6 +26,9 @@ class SearchRequest extends FormRequest
         return [
             'search' => 'string|required|max:30',
             'location' => 'string|required|max:30',
+            'sort' => [
+                
+            ],
         ];
     }
 }
