@@ -52,7 +52,7 @@ class UpdateProfilController extends Controller
             $delete = unlink(storage_path($getOldPath2));
 
         }
-
+        //store new profil pict
         $path = $image->store('/public/assets/ProfilPicture');
         $path2 = explode('/', $path);
         $this->data['image_url'] = '/storage/'.$path2[1].'/'.$path2[2].'/'.$path2[3];

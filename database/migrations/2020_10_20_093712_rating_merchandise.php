@@ -13,7 +13,7 @@ class RatingMerchandise extends Migration
      */
     public function up()
     {
-        Schema::create('rating_mercahndise', function (Blueprint $table) {
+        Schema::create('rating_merchandise', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('merchandise_id');
             $table->bigInteger('assessor_id');
