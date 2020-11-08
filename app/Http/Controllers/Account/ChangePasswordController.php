@@ -16,11 +16,9 @@ class ChangePasswordController extends Controller
     {
       $data = $request->all();
 
-      if( Hash::check($data['current-password'], Auth::user()->password) &&
-            
+      if( Hash::check($data['current-password'], Auth::user()->password) &&   
             $data['new-password'] == $data['confirm-password'] ) {
         
-                
             $update = User::where('id', Auth::user()->id)
             ->take(1)
             ->update([
