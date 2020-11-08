@@ -23,7 +23,7 @@ class Mechandise extends Migration
             $table->integer('price');
             $table->string('location');
             $table->string('categories');
-            $table->boolean('deleted');
+            $table->smallInteger('deleted');
 
         });
     }

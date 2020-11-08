@@ -38,7 +38,8 @@
                 <img src="{{$i->image_url}}" alt="" style="max-width : 300px; height: auto;">
             </td>
             <td>
-                <form action="{{url('/delete-image-merchandise')}}" method="post">
+                @if(sizeof($image) > 1)
+				<form action="{{url('/delete-image-merchandise')}}" method="post">
 					@csrf 
 					@method('delete')
 					<input type="number" value="{{$i->id}}" class="d-none "name="id">
@@ -50,6 +51,7 @@
                     	<i class="fa fa-trash"></i>
                     </button>
                 </form>
+				@endif
             </td> 
         <tr>
     @endforeach

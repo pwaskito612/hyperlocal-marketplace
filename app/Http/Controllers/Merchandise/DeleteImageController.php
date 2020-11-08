@@ -18,9 +18,12 @@ class DeleteImageController extends Controller
         $data = $request->all();
 
         $image = $this->getDataFromDB($data['id']);
-      
-        $this->deleteImage($image->image_url);
-        $this->deleteDB($image->id);
+        $check = $this->checkTotalImage($image->merchandise_id);
+        
+        if(sizeof($check) > 1) {
+            $this->deleteImage($image->image_url);
+            $this->deleteDB($image->id);
+        }
         
         return redirect('/edit-merchandise-image?id='. $image->merchandise_id);
     }
@@ -33,8 +36,16 @@ class DeleteImageController extends Controller
         ->select('merchandise_images.id', 'image_url', 'merchandise_images.merchandise_id')
         ->first();
 
-        var_dump($image->merchandise_id);
         return $image;
+    }
+
+    public function checkTotalImage($merchandiseId) {
+        $total = MerchandiseImage::where('merchandise_id', $merchandiseId)
+        ->select('id')
+        ->take(2)
+        ->get();
+
+        return $total;
     }
 
     public function deleteImage($path) {

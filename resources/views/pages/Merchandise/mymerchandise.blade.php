@@ -88,9 +88,9 @@
 											<button type="submit" 
 											class="btn btn-info"
 													style="padding-top : 3px;
-													padding-left : 16px;
+													padding-left : 17px;
 													padding-bottom : 4px;
-													padding-right : 16px;
+													padding-right : 17px;
 													">
 														<i class="fa fa-pencil"></i>
 													</button>
@@ -118,10 +118,11 @@
 												<input type="number" value="{{$m->id}}" class="d-none "
 												name="id">
 												<button class="btn btn-danger"
-												style="padding-top : 12px;
-													padding-left : 16px;
-													padding-bottom : 12px;
-													padding-right : 16px;">
+												style="padding-top : 4px;
+													padding-left : 17px;
+													padding-bottom : 5px;
+													padding-right : 17px;
+													">
                                         			<i class="fa fa-trash"></i>
                                     			</button>
 												</form>

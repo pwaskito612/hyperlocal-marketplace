@@ -19,7 +19,7 @@ class DeleteController extends Controller
 
        $delete = Merchandise::where('id', $data['id'])
        ->where('seller_id', Auth::user()->id)
-       ->update(['deleted' => false]);
+       ->update(['deleted' => 1]);
 
        
         return redirect('/mymerchandise');

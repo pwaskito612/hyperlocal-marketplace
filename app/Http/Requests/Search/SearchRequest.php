@@ -27,7 +27,9 @@ class SearchRequest extends FormRequest
             'search' => 'string|required|max:30',
             'location' => 'string|required|max:30',
             'sort' => [
-                
+                'required',
+                'string',
+                'in:DefaultSearch,OrderByHighestPrice,OrderByLowestPrice,OrderByRate'
             ],
         ];
     }
