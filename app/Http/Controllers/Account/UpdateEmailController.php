@@ -12,29 +12,31 @@ use App\Http\Requests\Account\EmailRequest;
 
 class UpdateEmailController extends Controller
 {
-    private $data;
+   
 
     public function index(EmailRequest $request)
     {
-        $this->data = $request->all();
+        $data = $request->all();
 
-        $this->updateDB();
-        $this->sendEmail();
+        if($data['email'] != Auth::user()->email){ 
+            $this->updateDB($data['email']);
+            $this->sendEmail($data['email']);
+        }
 
         return redirect('/profil');
     }
 
-    public function  updateDB () {
+    public function  updateDB ($email) {
         
         $update = User::where('id', Auth::user()->id)->update([
-            'email' => $this->data['email'],
+            'email' => $email,
             'email_verified_at' => null
          ]);
 
     }
 
-    public function sendEmail() {
-        Mail::to($this->data['email'])->send(new LinkChangeEmail);
+    public function sendEmail($email) {
+        Mail::to($email)->send(new LinkChangeEmail);
     }
 
 }
